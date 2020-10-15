@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import demo.entity.Student;
+import demo.entity.StudentDemo;
 
 
 public class ReadStudentDemo {
@@ -14,12 +14,12 @@ public class ReadStudentDemo {
 		  Logger log = Logger.getLogger(ReadStudentDemo.class.getName());  
 		SessionFactory factory  = new Configuration()
 									.configure("hibernate.cfg.xml")
-									.addAnnotatedClass(Student.class)
+									.addAnnotatedClass(StudentDemo.class)
 									.buildSessionFactory();
 		Session session = factory.getCurrentSession();
 		try {
 		     log.info("Creating the new Student object");
-			Student tempStudent = new Student("Pradhumna" , "Rathore" , "pradhumnarathore@gmail.com");
+			StudentDemo tempStudent = new StudentDemo("Pradhumna" , "Rathore" , "pradhumnarathore@gmail.com");
 			
 			log.info("saving the student");
 			session.beginTransaction();
@@ -35,7 +35,7 @@ public class ReadStudentDemo {
 			
 			log.info("/n getting student bt id"  + tempStudent.getId());
 			
-			Student myStudent = session.get(Student.class, tempStudent.getId());
+			StudentDemo myStudent = session.get(StudentDemo.class, tempStudent.getId());
 			
 			log.info("get complete"  + myStudent);
 			

@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import demo.entity.Student;
+import demo.entity.StudentDemo;
 
 
 public class QueryStudentDemo {
@@ -17,7 +17,7 @@ public class QueryStudentDemo {
 		// create session factory
 		SessionFactory factory = new Configuration()
 								.configure("hibernate.cfg.xml")
-								.addAnnotatedClass(Student.class)
+								.addAnnotatedClass(StudentDemo.class)
 								.buildSessionFactory();
 		
 		// create session
@@ -29,7 +29,7 @@ public class QueryStudentDemo {
 			session.beginTransaction();
 			
 			// query students
-			List<Student> theStudents = session.createQuery("from Student").getResultList();
+			List<StudentDemo> theStudents = session.createQuery("from Student").getResultList();
 			
 			// display the students
 			displayStudents(log,theStudents);
@@ -54,8 +54,8 @@ public class QueryStudentDemo {
 		}
 	}
 
-	private static void displayStudents(Logger log,List<Student> theStudents) {
-		for (Student tempStudent : theStudents) {
+	private static void displayStudents(Logger log,List<StudentDemo> theStudents) {
+		for (StudentDemo tempStudent : theStudents) {
 			log.info(tempStudent);
 		}
 	}

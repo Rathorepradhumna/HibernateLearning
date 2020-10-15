@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import demo.entity.Student;
+import demo.entity.StudentDemo;
 
 
 public class CreateDemo {

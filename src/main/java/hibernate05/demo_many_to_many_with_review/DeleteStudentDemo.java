@@ -1,35 +1,37 @@
-package hibernate04.demo_one_to_many_with_review;
+package hibernate05.demo_many_to_many_with_review;
 
 import org.hibernate.cfg.Configuration;
+
+import demo.entity.StudentDemo;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import demo.entity.StudentDemo;
 
 
-public class GetCourseAndReviewsDemo {
+public class DeleteStudentDemo {
 	public static void main(String args[]) {
 		
-		  Logger log = Logger.getLogger(GetCourseAndReviewsDemo.class.getName());  
+		  Logger log = Logger.getLogger(DeleteStudentDemo.class.getName());  
 		SessionFactory factory  = new Configuration()
-									.configure("hibernate04-one-to-many.cfg.xml")
+									.configure("hibernate05-many-to-many.cfg.xml")
 									.addAnnotatedClass(Instructor.class)
 									.addAnnotatedClass(InstructorDetails.class)
 									.addAnnotatedClass(Course.class)
 									.addAnnotatedClass(Review.class)
+									.addAnnotatedClass(Student.class)
 									.buildSessionFactory();
 		Session session = factory.getCurrentSession();
 		try {
         	session.beginTransaction();
-        	
-        	int theId = 10;
-        	
-        	Course tempCourse = session.get(Course.class, theId);
-        	
-        	log.info(tempCourse);
-        	log.info(tempCourse.getReviews());
-			session.getTransaction().commit();
+        	int sundentId = 3;
+        	Student tempStudent = session.get(Student.class, sundentId);
+
+        	log.info("deleting  " + tempStudent);
+        	session.delete(tempStudent);
+        	session.getTransaction().commit();
+			
 			log.info("done");
 		}
 		finally {

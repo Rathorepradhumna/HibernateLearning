@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import demo.entity.Student;
+import demo.entity.StudentDemo;
 
 
 public class DeleteStudentDemo {
@@ -14,7 +14,7 @@ public class DeleteStudentDemo {
 		  Logger log = Logger.getLogger(DeleteStudentDemo.class.getName());  
 		SessionFactory factory  = new Configuration()
 									.configure("hibernate.cfg.xml")
-									.addAnnotatedClass(Student.class)
+									.addAnnotatedClass(StudentDemo.class)
 									.buildSessionFactory();
 		Session session = factory.getCurrentSession();
 		try {
@@ -25,7 +25,7 @@ public class DeleteStudentDemo {
 			
 			session.beginTransaction();
 			 log.info("getting student with id" + studentId);
-			 Student myStudent = session.get(Student.class, studentId);
+			 StudentDemo myStudent = session.get(StudentDemo.class, studentId);
 			
 			 //delete myStudent object
 			 
